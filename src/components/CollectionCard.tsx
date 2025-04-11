@@ -6,7 +6,7 @@ import { Avatar } from '@/components/ui/avatar';
 interface CollectionProps {
   id: string;
   name: string;
-  bannerImage: string;
+  bannerImage?: string; // Changed from required to optional
   verified: boolean;
   floorPrice: number;
   itemCount: number;
@@ -21,7 +21,7 @@ interface CollectionProps {
 
 export default function CollectionCard({
   name,
-  bannerImage,
+  bannerImage = "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3", // Added default value
   verified,
   floorPrice,
   itemCount,

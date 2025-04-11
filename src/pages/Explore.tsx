@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
@@ -80,10 +79,11 @@ const Explore: React.FC = () => {
   };
   
   // Query NFTs with current filters, sort, and page
+  // Removed keepPreviousData property as it's no longer supported in the latest react-query version
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['nfts', filters, sortParam, currentPage],
     queryFn: () => getNFTs(filters, sortParam, currentPage),
-    keepPreviousData: true
+    placeholderData: (previousData) => previousData // This replaces the keepPreviousData functionality
   });
   
   // Handle page change
