@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// NFT marketplace custom colors
+				neon: {
+					blue: '#00f6ff',
+					purple: '#9b87f5',
+					pink: '#ff00ff',
+					green: '#00ffaa',
+					yellow: '#ffcc00',
+				},
+				dark: {
+					DEFAULT: '#0D0D19',
+					card: '#13131F',
+					lighter: '#1A1A28',
 				}
 			},
 			borderRadius: {
@@ -84,11 +98,43 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'glow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.6' },
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
+				'pulse-neon': {
+					'0%, 100%': { boxShadow: '0 0 8px 2px var(--pulse-color, rgba(155, 135, 245, 0.6))' },
+					'50%': { boxShadow: '0 0 16px 4px var(--pulse-color, rgba(155, 135, 245, 0.8))' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'glow': 'glow 3s ease-in-out infinite',
+				'spin-slow': 'spin-slow 10s linear infinite',
+				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
+				'gradient-card': 'linear-gradient(180deg, rgba(26, 26, 40, 0.5) 0%, rgba(19, 19, 31, 0.9) 100%)',
+				'gradient-featured': 'linear-gradient(135deg, #1F1F32 0%, #0D0D19 100%)',
+			},
+			boxShadow: {
+				'neon-blue': '0 0 15px rgba(0, 246, 255, 0.6)',
+				'neon-purple': '0 0 15px rgba(155, 135, 245, 0.6)',
+				'neon-pink': '0 0 15px rgba(255, 0, 255, 0.6)',
+				'glass': '0 8px 32px rgba(31, 38, 135, 0.15)',
 			}
 		}
 	},
