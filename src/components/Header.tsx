@@ -13,7 +13,9 @@ import {
   X, 
   Wallet,
   User,
-  LogOut
+  LogOut,
+  Grid,
+  GridIcon
 } from 'lucide-react';
 import { useNFTContext } from '@/context/NFTContext';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -60,9 +62,9 @@ const Header: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue flex items-center justify-center">
-            <span className="text-xl font-bold text-white">N</span>
+            <span className="text-xl font-bold text-white">E</span>
           </div>
-          <span className="text-xl font-bold text-gradient-purple">NFTVerse</span>
+          <span className="text-xl font-bold text-gradient-purple">Ethereal NFT</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -84,6 +86,15 @@ const Header: React.FC = () => {
           >
             <SearchIcon className="w-5 h-5" />
             <span>Explore</span>
+          </Link>
+          <Link 
+            to="/collections" 
+            className={`flex items-center space-x-1 transition-colors ${
+              isActive('/collections') ? 'text-white' : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <GridIcon className="w-5 h-5" />
+            <span>Collections</span>
           </Link>
         </nav>
 
@@ -272,6 +283,17 @@ const Header: React.FC = () => {
             >
               <SearchIcon className="w-6 h-6" />
               <span>Explore</span>
+            </Link>
+            
+            <Link 
+              to="/collections" 
+              className={`flex items-center space-x-2 text-lg py-3 ${
+                isActive('/collections') ? 'text-white' : 'text-gray-400'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <GridIcon className="w-6 h-6" />
+              <span>Collections</span>
             </Link>
             
             <Link 
