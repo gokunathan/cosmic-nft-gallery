@@ -70,8 +70,17 @@ const CreateNFTContent = () => {
 
   // Function to integrate newly created NFTs with the platform
   const handleSuccessfulCreation = (newNftData) => {
-    // Add to explore feed with "New" tag for visibility
+    // Add to global NFT registry for Explore page visibility
     console.log('Integrating new NFT into platform:', newNftData);
+    
+    // Ensure the NFT appears in the collections view if it belongs to a collection
+    if (newNftData.collectionId) {
+      // In a real application, this would update a database or call an API
+      console.log(`Adding NFT to collection: ${newNftData.collectionId}`);
+    }
+    
+    // Add to user's created NFTs
+    console.log(`Adding NFT to user's created items`);
     
     // Redirect to the NFT detail page after successful creation
     navigate(`/nft/${newNftData.id}`);

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -69,12 +68,7 @@ const Header: React.FC = () => {
           <span className="text-xl font-bold text-gradient-purple">Ethereal NFT</span>
         </Link>
 
-        {/* Page Title - Added for Create NFT page */}
-        {isCreatePage && (
-          <h1 className="text-2xl font-bold text-white absolute left-1/2 transform -translate-x-1/2 hidden md:block">
-            Create New NFT
-          </h1>
-        )}
+        {/* Remove the "Create NFT" page title from here */}
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
@@ -245,12 +239,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Page Title - Added for Create NFT page */}
-      {isCreatePage && (
-        <div className="container mx-auto px-4 py-2 md:hidden">
-          <h1 className="text-xl font-bold text-white">Create New NFT</h1>
-        </div>
-      )}
+      {/* Remove the mobile page title for Create NFT page */}
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (

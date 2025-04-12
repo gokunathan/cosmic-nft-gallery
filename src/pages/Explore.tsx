@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { getNFTs, sortOptions } from '@/services/nftService';
@@ -50,6 +51,14 @@ const Explore: React.FC = () => {
   
   const [filters, setFilters] = useState<Record<string, string[]>>(getFiltersFromUrl());
   
+  // Force refetch when navigating back to the Explore page after NFT creation
+  const [refetchTrigger, setRefetchTrigger] = useState(Date.now());
+  
+  useEffect(() => {
+    // This will cause a refetch when the component mounts or when the user returns to it
+    setRefetchTrigger(Date.now());
+  }, []);
+  
   // When filters or sort changes, update URL and reset to page 1
   const updateFiltersAndSort = (newFilters: Record<string, string[]>, newSort?: string) => {
     const params = new URLSearchParams();
@@ -79,9 +88,8 @@ const Explore: React.FC = () => {
   };
   
   // Query NFTs with current filters, sort, and page
-  // Removed keepPreviousData property as it's no longer supported in the latest react-query version
-  const { data, isLoading, isFetching } = useQuery({
-    queryKey: ['nfts', filters, sortParam, currentPage],
+  const { data, isLoading, isFetching, refetch } = useQuery({
+    queryKey: ['nfts', filters, sortParam, currentPage, refetchTrigger],
     queryFn: () => getNFTs(filters, sortParam, currentPage),
     placeholderData: (previousData) => previousData // This replaces the keepPreviousData functionality
   });
