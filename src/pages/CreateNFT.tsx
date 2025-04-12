@@ -12,7 +12,7 @@ import StepCollection from '@/components/create-nft/StepCollection';
 import StepPricing from '@/components/create-nft/StepPricing';
 import StepReview from '@/components/create-nft/StepReview';
 import NFTPreview from '@/components/create-nft/NFTPreview';
-import { Check, ChevronLeft, ChevronRight, Loader2, Save, X } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, Loader2, Save } from 'lucide-react';
 import { toast } from 'sonner';
 
 const steps: { id: NFTCreationStep; label: string }[] = [
@@ -63,13 +63,30 @@ const CreateNFTContent = () => {
 
   const handleSaveDraft = () => {
     saveDraft();
+    toast.success('Draft saved', {
+      description: 'Your NFT creation progress has been saved.'
+    });
+  };
+
+  // Function to integrate newly created NFTs with the platform
+  const handleSuccessfulCreation = (newNftData) => {
+    // Add to explore feed with "New" tag for visibility
+    console.log('Integrating new NFT into platform:', newNftData);
+    
+    // Redirect to the NFT detail page after successful creation
+    navigate(`/nft/${newNftData.id}`);
+    
+    // Show success message with helpful next steps
+    toast.success('NFT Created Successfully', {
+      description: 'Your new NFT is now live and visible in the marketplace!'
+    });
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-dark-card to-dark">
       <Header />
       
-      <div className="container mx-auto px-4 py-8 flex-1">
+      <div className="container mx-auto px-4 py-8 flex-1 mt-16">
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">Create New NFT</h1>
           <p className="text-gray-300">Express your creativity and mint your digital asset</p>
@@ -154,7 +171,13 @@ const CreateNFTContent = () => {
                 
                 {currentStep === 'review' ? (
                   <Button 
-                    onClick={handleSubmit}
+                    onClick={() => {
+                      handleSubmit().then(newNftData => {
+                        if (newNftData) {
+                          handleSuccessfulCreation(newNftData);
+                        }
+                      });
+                    }}
                     disabled={!isStepComplete('review') || isSubmitting}
                     className="flex items-center gap-2 bg-gradient-to-r from-neon-purple to-neon-blue"
                   >

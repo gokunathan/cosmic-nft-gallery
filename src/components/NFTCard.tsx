@@ -7,6 +7,7 @@ import { NFT } from '@/services/nftService';
 import { Heart, Eye, Clock, ShoppingCart } from 'lucide-react';
 import { useNFTContext } from '@/context/NFTContext';
 import { Link } from 'react-router-dom';
+import NFTImage from './NFTImage';
 
 interface NFTCardProps {
   nft: NFT;
@@ -55,10 +56,11 @@ export default function NFTCard({ nft }: NFTCardProps) {
       <div className="relative">
         <Link to={`/nft/${nft.id}`}>
           <div className="relative overflow-hidden aspect-square">
-            <img 
+            <NFTImage 
               src={nft.previewImage} 
               alt={nft.name} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="group-hover:scale-105 transition-transform duration-500"
+              collectionName={nft.collection.name}
             />
             
             {/* Collection badge */}

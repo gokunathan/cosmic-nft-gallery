@@ -15,7 +15,8 @@ import {
   User,
   LogOut,
   Grid,
-  GridIcon
+  GridIcon,
+  Plus
 } from 'lucide-react';
 import { useNFTContext } from '@/context/NFTContext';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -24,8 +25,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { cart } = useNFTContext();
+  const { cart, removeFromCart } = useNFTContext(); // Added removeFromCart here
   const location = useLocation();
+  const isCreatePage = location.pathname === '/create';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,6 +68,13 @@ const Header: React.FC = () => {
           </div>
           <span className="text-xl font-bold text-gradient-purple">Ethereal NFT</span>
         </Link>
+
+        {/* Page Title - Added for Create NFT page */}
+        {isCreatePage && (
+          <h1 className="text-2xl font-bold text-white absolute left-1/2 transform -translate-x-1/2 hidden md:block">
+            Create New NFT
+          </h1>
+        )}
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
@@ -142,8 +151,8 @@ const Header: React.FC = () => {
                           <Button 
                             variant="ghost" 
                             size="icon"
-                            onClick={() => {
-                              const { removeFromCart } = useNFTContext();
+                            onClick={(e) => {
+                              e.stopPropagation();
                               removeFromCart(nft.id);
                             }}
                           >
@@ -236,6 +245,13 @@ const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Page Title - Added for Create NFT page */}
+      {isCreatePage && (
+        <div className="container mx-auto px-4 py-2 md:hidden">
+          <h1 className="text-xl font-bold text-white">Create New NFT</h1>
+        </div>
+      )}
+
       {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 md:hidden">
@@ -305,6 +321,17 @@ const Header: React.FC = () => {
             >
               <Heart className="w-6 h-6" />
               <span>Favorites</span>
+            </Link>
+
+            <Link 
+              to="/create" 
+              className={`flex items-center space-x-2 text-lg py-3 ${
+                isActive('/create') ? 'text-white' : 'text-gray-400'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Plus className="w-6 h-6" />
+              <span>Create NFT</span>
             </Link>
             
             {isLoggedIn && (
