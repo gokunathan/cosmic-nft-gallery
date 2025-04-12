@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { toast } from 'sonner';
 
@@ -133,7 +132,7 @@ interface CreateNFTContextType {
   saveDraft: () => void;
   loadDraft: () => boolean;
   resetForm: () => void;
-  handleSubmit: () => void;
+  handleSubmit: () => Promise<any>;
   isSubmitting: boolean;
 }
 
@@ -344,7 +343,7 @@ export const CreateNFTProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('nftDraftTimestamp');
   };
   
-  const handleSubmit = async () => {
+  const handleSubmit = async (): Promise<any> => {
     // In a real implementation, this would:
     // 1. Upload files to IPFS or storage
     // 2. Create metadata JSON
@@ -357,17 +356,31 @@ export const CreateNFTProvider = ({ children }: { children: ReactNode }) => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
+      // Create a mock NFT data object to return
+      const newNftData = {
+        id: `nft-${Date.now()}`,
+        name: formData.name,
+        description: formData.description,
+        image: formData.assetPreviews[0]?.previewUrl || '',
+        creator: {
+          id: 'user-1',
+          name: 'Current User'
+        },
+        collectionId: formData.existingCollectionId || `collection-${Date.now()}`
+      };
+      
       toast.success('NFT Created Successfully!', {
         description: 'Your NFT has been created and is now listed on the marketplace.'
       });
       
       resetForm();
-      // In a real app, you would redirect to the new NFT page here
+      return newNftData;
     } catch (error) {
       console.error('Error creating NFT:', error);
       toast.error('Failed to create NFT', {
         description: 'There was an error during the creation process. Please try again.'
       });
+      return null;
     } finally {
       setIsSubmitting(false);
     }
