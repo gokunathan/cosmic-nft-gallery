@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useCreateNFT } from '@/context/CreateNFTContext';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '@/components/ui/button';
-import { FileUp, Image, Film, Music, Cube, AlertCircle, X } from 'lucide-react';
+import { FileUp, Image, Film, Music, Box, AlertCircle, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
@@ -76,7 +76,7 @@ const StepUpload = () => {
     if (fileType.startsWith('image')) return <Image size={16} />;
     if (fileType.startsWith('video')) return <Film size={16} />;
     if (fileType.startsWith('audio')) return <Music size={16} />;
-    if (fileType.includes('gltf') || fileType.includes('glb')) return <Cube size={16} />;
+    if (fileType.includes('gltf') || fileType.includes('glb')) return <Box size={16} />;
     return <FileUp size={16} />;
   };
   
@@ -161,7 +161,7 @@ const StepUpload = () => {
                   
                   {preview.fileType === '3d' && (
                     <div className="w-full h-full flex items-center justify-center flex-col">
-                      <Cube size={64} className="text-gray-400" />
+                      <Box size={64} className="text-gray-400" /> {/* Changed from Cube to Box */}
                       <p className="text-gray-300 mt-2">3D Model Preview</p>
                     </div>
                   )}
