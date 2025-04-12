@@ -1,4 +1,3 @@
-
 // Mock NFT data service
 export interface Creator {
   id: string;
@@ -378,8 +377,8 @@ export const nfts: NFT[] = [
     id: "nft-45678",
     name: "Cybernetic Lion #03",
     description: "A majestic lion reimagined with cybernetic enhancements",
-    image: "https://images.unsplash.com/photo-1520931061294-db3e762a9273?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3",
-    previewImage: "https://images.unsplash.com/photo-1520931061294-db3e762a9273?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3",
+    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
+    previewImage: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
     creator: creators[3],
     collection: collections[3],
     price: 0.75,
@@ -415,8 +414,8 @@ export const nfts: NFT[] = [
     id: "nft-45679",
     name: "Digital Butterfly #18",
     description: "A spectacularly colored digital butterfly with interactive wing patterns",
-    image: "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3",
-    previewImage: "https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3",
+    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
+    previewImage: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
     creator: creators[3],
     collection: collections[3],
     price: 0.6,
