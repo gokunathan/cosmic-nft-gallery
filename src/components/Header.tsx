@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -59,16 +60,50 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-3">
-          <div className="relative w-10 h-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-purple via-neon-blue to-neon-pink rounded-lg transform rotate-45 hover:rotate-180 transition-transform duration-500"></div>
-            <div className="absolute inset-0 bg-gradient-to-tl from-neon-blue via-transparent to-transparent opacity-50 rounded-lg"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-xl font-bold text-white tracking-wider">Ξ</span>
+          {/* Sacred Geometry Logo with Animation */}
+          <div className="relative w-12 h-12">
+            {/* Hexagonal Outer Shape */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3A1C71] via-[#D76D77] to-[#FFAF7B] rounded-xl opacity-80 animate-[spin_40s_linear_infinite]"></div>
+            
+            {/* Triangular Inner Elements */}
+            <div className="absolute inset-[2px] bg-dark rounded-xl flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full flex items-center justify-center">
+                {/* Sacred Geometry Inner Pattern */}
+                <div className="relative w-8 h-8">
+                  {/* Triangle 1 */}
+                  <div className="absolute inset-0 border-2 border-[#D76D77]/60 transform rotate-0 animate-[spin_30s_linear_infinite] rounded-lg"></div>
+                  
+                  {/* Triangle 2 */}
+                  <div className="absolute inset-0 border-2 border-[#FFAF7B]/60 transform rotate-45 animate-[spin_25s_linear_reverse_infinite] rounded-lg"></div>
+                  
+                  {/* Ethereal Symbol */}
+                  <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl tracking-wider">
+                    Ξ
+                  </div>
+                  
+                  {/* Glowing Aura */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#3A1C71]/20 via-transparent to-[#D76D77]/20 blur-md animate-pulse"></div>
+                  
+                  {/* Floating Particles */}
+                  <div className="absolute top-1 right-1 w-1 h-1 bg-white rounded-full opacity-75 animate-[pulse_4s_ease-in-out_infinite]"></div>
+                  <div className="absolute bottom-1 left-2 w-1 h-1 bg-white rounded-full opacity-50 animate-[pulse_5s_ease-in-out_infinite_0.5s]"></div>
+                  <div className="absolute top-2 left-1 w-0.5 h-0.5 bg-white rounded-full opacity-60 animate-[pulse_3s_ease-in-out_infinite_1s]"></div>
+                </div>
+              </div>
             </div>
+            
+            {/* Cosmic Background */}
+            <div className="absolute inset-0 bg-gradient-radial from-[#3A1C71]/10 via-transparent to-transparent opacity-70 animate-pulse rounded-xl"></div>
           </div>
-          <div className="flex flex-col items-start">
-            <span className="text-xl font-bold text-gradient-purple">Ethereal</span>
-            <span className="text-sm text-gray-400 -mt-1">NFT Gallery</span>
+          
+          {/* Typography */}
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-[4px] text-transparent bg-clip-text bg-gradient-to-r from-[#3A1C71] via-[#D76D77] to-[#FFAF7B]">ETHEREAL</span>
+            <div className="flex items-center">
+              <span className="h-px w-4 bg-gradient-to-r from-transparent via-[#D76D77] to-transparent mr-1"></span>
+              <span className="text-sm tracking-[2px] text-gray-400">NFT GALLERY</span>
+              <span className="h-px w-4 bg-gradient-to-r from-[#D76D77] via-transparent to-transparent ml-1"></span>
+            </div>
           </div>
         </Link>
 
