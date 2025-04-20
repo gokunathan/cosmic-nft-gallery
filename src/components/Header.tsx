@@ -24,7 +24,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { cart, removeFromCart } = useNFTContext(); // Added removeFromCart here
+  const { cart, removeFromCart } = useNFTContext();
   const location = useLocation();
   const isCreatePage = location.pathname === '/create';
 
@@ -41,7 +41,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when location changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
@@ -50,7 +49,6 @@ const Header: React.FC = () => {
     return location.pathname === path;
   };
 
-  // Mock user state (in a real app this would come from auth context)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
@@ -60,17 +58,20 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue flex items-center justify-center">
-            <span className="text-xl font-bold text-white">E</span>
+        <Link to="/" className="flex items-center space-x-3">
+          <div className="relative w-10 h-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-purple via-neon-blue to-neon-pink rounded-lg transform rotate-45 hover:rotate-180 transition-transform duration-500"></div>
+            <div className="absolute inset-0 bg-gradient-to-tl from-neon-blue via-transparent to-transparent opacity-50 rounded-lg"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-xl font-bold text-white tracking-wider">Ξ</span>
+            </div>
           </div>
-          <span className="text-xl font-bold text-gradient-purple">Ethereal NFT</span>
+          <div className="flex flex-col items-start">
+            <span className="text-xl font-bold text-gradient-purple">Ethereal</span>
+            <span className="text-sm text-gray-400 -mt-1">NFT Gallery</span>
+          </div>
         </Link>
 
-        {/* Remove the "Create NFT" page title from here */}
-
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           <Link 
             to="/" 
@@ -101,9 +102,7 @@ const Header: React.FC = () => {
           </Link>
         </nav>
 
-        {/* Actions Menu */}
         <div className="flex items-center space-x-2">
-          {/* Cart */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="relative">
@@ -172,14 +171,12 @@ const Header: React.FC = () => {
             </SheetContent>
           </Sheet>
           
-          {/* Favorites */}
           <Button variant="ghost" size="icon" asChild>
             <Link to="/favorites">
               <Heart className="w-5 h-5" />
             </Link>
           </Button>
           
-          {/* User Menu (Desktop) */}
           <div className="hidden md:block ml-2">
             {isLoggedIn ? (
               <DropdownMenu>
@@ -232,16 +229,12 @@ const Header: React.FC = () => {
             )}
           </div>
           
-          {/* Mobile menu trigger */}
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             <Menu className="w-6 h-6" />
           </Button>
         </div>
       </div>
 
-      {/* Remove the mobile page title for Create NFT page */}
-
-      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 md:hidden">
           <div className="flex justify-end p-4">
